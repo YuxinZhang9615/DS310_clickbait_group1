@@ -5,3 +5,11 @@
 ###Due: 10/8/2017
 ###############################################################################
 
+install.packages("rjson")
+library(rjson)
+library("rjson")
+json_file <- "http://api.worldbank.org/country?per_page=10&region=OED&lendingtype=LNX&format=json"
+raw_data <- fromJSON(paste(readLines("instances_train.jsonl"), collapse=""))
+raw_data
+label <- fromJSON(paste(readLines("truth_train.jsonl"), collapse=""))
+label
