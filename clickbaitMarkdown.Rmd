@@ -8,7 +8,7 @@ output: html_document
 ```{r}
 #requires stringR
 #package(stringR)
-ClickbaitDataset <- readLines("/Users/Rafael/Downloads/D310 Clickbait/dataset/instances_train.jsonl")
+ClickbaitDataset <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
 cleanClickbaitDataset = gsub("&amp", " ", ClickbaitDataset)
 cleanClickbaitDataset = gsub("(RT|via)((?:\\b\\W*@\\w+)+)", " ", cleanClickbaitDataset)
 cleanClickbaitDataset = gsub("@\\w+", " ", cleanClickbaitDataset)
@@ -29,11 +29,30 @@ cleanClickbaitDataset <- str_replace(cleanClickbaitDataset,"RT @[a-z,A-Z]*: "," 
 #data term matrix
 ```{r}
 library("tm")
-docs <- Corpus(DirSource("/Users/Rafael/Downloads/D310 Clickbait/dataset"))
+docs <- Corpus(DirSource("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/"))
 dtm <- DocumentTermMatrix(docs)
 freq <- colSums(as.matrix(dtm))
 ord <- order(freq,decreasing=TRUE)
+<<<<<<< HEAD
 freq[head(ord)]
+=======
+freq[ord[1:20]]
+
+```
+
+#Without STOP wrods
+```{r}
+docs2 <- Corpus(DirSource("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/"))
+docs2 <- tm_map(docs2, removeWords, stopwords(kind = "en"))
+
+dtm2 <- DocumentTermMatrix(docs2)
+freq2 <- colSums(as.matrix(dtm2))
+ord2 <- order(freq2,decreasing=TRUE)
+freq2[ord2[1:20]]
+
+```
+
+```{r}
 
 ```
 
