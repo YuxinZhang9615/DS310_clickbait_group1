@@ -49,7 +49,7 @@ dtm2 <- DocumentTermMatrix(docs2)
 freq2 <- colSums(as.matrix(dtm2))
 ord2 <- order(freq2,decreasing=TRUE)
 freq2[ord2[1:20]]
-
+ 
 ```
 
 ```{r}
