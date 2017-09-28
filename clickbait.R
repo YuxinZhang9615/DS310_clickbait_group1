@@ -7,14 +7,15 @@
 
 install.packages("rjson")
 library(rjson)
-library("rjson")
 json_file <- "http://api.worldbank.org/country?per_page=10&region=OED&lendingtype=LNX&format=json"
-raw_data <- fromJSON(paste(readLines("instances_train.jsonl"), collapse=""))
-raw_data
-label <- fromJSON(paste(readLines("truth_train.jsonl"), collapse=""))
+raw_data <- readLines("instances_train.jsonl")
+str(raw_data)
+label <- readLines("truth_train.jsonl")
 label
 
 ###############################Diana######################################################
+###sample data length of 10
+sample_data <- 
 ###Youtube
 install.packages("rJava")
 install.packages("NLP")
