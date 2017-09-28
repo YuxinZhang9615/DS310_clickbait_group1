@@ -54,6 +54,6 @@ freq2[ord2[1:20]]
 ```
 
 ```{r}
-
+dtm$dimnames
 ```
 
