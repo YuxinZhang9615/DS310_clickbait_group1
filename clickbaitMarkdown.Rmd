@@ -17,7 +17,23 @@ docs <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
 dtm <- DocumentTermMatrix(docs)
 freq <- colSums(as.matrix(dtm))
 ord <- order(freq,decreasing=TRUE)
-freq[head(ord)]
-x <- 
+freq[ord[1:20]]
+
+```
+
+#Without STOP wrods
+```{r}
+docs2 <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
+docs2 <- tm_map(docs2, removeWords, stopwords(kind = "en"))
+
+dtm2 <- DocumentTermMatrix(docs2)
+freq2 <- colSums(as.matrix(dtm2))
+ord2 <- order(freq2,decreasing=TRUE)
+freq2[ord2[1:20]]
+
+```
+
+```{r}
+
 ```
 
