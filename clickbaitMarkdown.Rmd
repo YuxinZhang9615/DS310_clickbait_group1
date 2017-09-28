@@ -6,17 +6,34 @@ output: html_document
 ---
 
 ```{r}
-
+#requires stringR
+#package(stringR)
+ClickbaitDataset <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
+cleanClickbaitDataset = gsub("&amp", " ", ClickbaitDataset)
+cleanClickbaitDataset = gsub("(RT|via)((?:\\b\\W*@\\w+)+)", " ", cleanClickbaitDataset)
+cleanClickbaitDataset = gsub("@\\w+", " ", cleanClickbaitDataset)
+cleanClickbaitDataset = gsub("http\\w+", " ", cleanClickbaitDataset)
+cleanClickbaitDataset = gsub("[ \t]{2,}", " ", cleanClickbaitDataset)
+cleanClickbaitDataset = gsub("^\\s+|\\s+$", " ", cleanClickbaitDataset) 
+# Get rid of URLs
+cleanClickbaitDataset <- str_replace_all(cleanClickbaitDataset, "http://t.co/[a-z,A-Z,0-9]*{8}"," ")
+# Get rid of hashtags
+cleanClickbaitDataset <- str_replace_all(cleanClickbaitDataset,"#[a-z,A-Z]*"," ")
+# Get rid of references to other screennames
+cleanClickbaitDataset <- str_replace_all(cleanClickbaitDataset,"@[a-z,A-Z]*"," ")  
+# Take out retweet header, there is only one
+cleanClickbaitDataset <- str_replace(cleanClickbaitDataset,"RT @[a-z,A-Z]*: "," ")
 ```
 
 
 #data term matrix
 ```{r}
 library("tm")
-docs <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
+docs <- Corpus(DirSource("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl"))
 dtm <- DocumentTermMatrix(docs)
 freq <- colSums(as.matrix(dtm))
 ord <- order(freq,decreasing=TRUE)
+freq[head(ord)]
 freq[ord[1:20]]
 
 ```
