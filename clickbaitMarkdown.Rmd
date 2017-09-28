@@ -33,7 +33,7 @@ training <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_cl
 docs <- Corpus(VectorSource(training))
 dtm <- DocumentTermMatrix(docs)
 freq <- colSums(as.matrix(dtm))
-ord <- order(freq,decreasing=TRUE)
+ord <- order(freq,decreasing = TRUE)
 freq[head(ord)]
 freq[ord[1:20]]
 
@@ -48,12 +48,12 @@ docs2 <- tm_map(docs2, removeWords, stopwords(kind = "en"))
 
 dtm2 <- DocumentTermMatrix(docs2)
 freq2 <- colSums(as.matrix(dtm2))
-ord2 <- order(freq2,decreasing=TRUE)
+ord2 <- order(freq2,decreasing = TRUE)
 freq2[ord2[1:20]]
  
 ```
 
 ```{r}
-dtm$dimnames
+dtm$dimnames$Terms[4515:5135]
 ```
 
