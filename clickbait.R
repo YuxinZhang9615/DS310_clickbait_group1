@@ -16,20 +16,14 @@ label
 
 ###############################Diana######################################################
 ###Youtube
-install.packages("rJava")
-install.packages("NLP")
-install.packages("openNLP")
-require(rJava)
-require(NLP)
-require(openNLP)
-##Need Sentence and word token annotations.
-postText <- raw_data[["postText"]]
-postText
-sent_token_annotator <- Maxent_Sent_Token_Annotator()
-word_token_annotator <- Maxent_Word_Token_Annotator()
-a2 <- annotate(postText, list(sent_token_annotator, word_token_annotator))
-pos_tag_annotator <- Maxent_POS_Tag_Annotator()
-a3 <- annotate(postText, pos_tag_annotator, a2)
-a3
+library("tm")
+docs <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
+dtm <- DocumentTermMatrix(docs)
+freq <- colSums(as.matrix(dtm))
+freq
+ord <- order(freq,decreasing=TRUE)
+freq[head(ord)]
 
+writeLines(as.character(docs))
+removeWords(docs, "melanoma")
 #############################Nick########################################################
