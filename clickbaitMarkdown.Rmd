@@ -18,5 +18,6 @@ dtm <- DocumentTermMatrix(docs)
 freq <- colSums(as.matrix(dtm))
 ord <- order(freq,decreasing=TRUE)
 freq[head(ord)]
+x <- 
 ```
 
