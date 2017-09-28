@@ -24,7 +24,7 @@ sample_data_posttext
 
 ###Youtube
 library("tm")
-docs <- Corpus(DirSource("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/"))
+docs <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
 dtm <- DocumentTermMatrix(docs)
 freq <- colSums(as.matrix(dtm))
 freq
