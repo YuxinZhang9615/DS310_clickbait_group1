@@ -40,7 +40,7 @@ freq[ord[1:20]]
 
 #Without STOP wrods
 ```{r}
-docs2 <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
+docs2 <- Corpus(DirSource("/Users/Rafael/Downloads/D310 Clickbait/dataset"))
 docs2 <- tm_map(docs2, removeWords, stopwords(kind = "en"))
 
 dtm2 <- DocumentTermMatrix(docs2)
