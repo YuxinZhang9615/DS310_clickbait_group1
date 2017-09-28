@@ -27,11 +27,11 @@ cleanClickbaitDataset <- str_replace(cleanClickbaitDataset,"RT @[a-z,A-Z]*: "," 
 #data term matrix
 ```{r}
 library("tm")
-docs <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
+docs <- Corpus(DirSource("/Users/Rafael/Downloads/D310 Clickbait/dataset"))
 dtm <- DocumentTermMatrix(docs)
 freq <- colSums(as.matrix(dtm))
 ord <- order(freq,decreasing=TRUE)
 freq[head(ord)]
-x <- 
+
 ```
 
