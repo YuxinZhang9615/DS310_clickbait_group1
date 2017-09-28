@@ -15,7 +15,12 @@ label
 
 ###############################Diana######################################################
 ###sample data length of 10
-sample_data <- 
+sample_data <- raw_data[10]
+sample_label <- label[10]
+
+sample_data
+sample_data_posttext <- sample_data
+
 ###Youtube
 library("tm")
 docs <- Corpus(DirSource("/Users/cameronzenier/R files/DS310-Project1"))
