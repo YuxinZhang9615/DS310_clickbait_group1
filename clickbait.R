@@ -31,3 +31,5 @@ a2 <- annotate(postText, list(sent_token_annotator, word_token_annotator))
 pos_tag_annotator <- Maxent_POS_Tag_Annotator()
 a3 <- annotate(postText, pos_tag_annotator, a2)
 a3
+
+#############################Nick########################################################
