@@ -6,6 +6,8 @@ output: html_document
 ---
 
 ```{r}
+#requires stringR
+#package(stringR)
 ClickbaitDataset <- readLines("/Users/Rafael/Downloads/D310 Clickbait/dataset/instances_train.jsonl")
 cleanClickbaitDataset = gsub("&amp", " ", ClickbaitDataset)
 cleanClickbaitDataset = gsub("(RT|via)((?:\\b\\W*@\\w+)+)", " ", cleanClickbaitDataset)
