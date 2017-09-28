@@ -12,14 +12,15 @@ raw_data <- readLines("instances_train.jsonl")
 str(raw_data)
 label <- readLines("truth_train.jsonl")
 label
-
+data <- fromJSON(file = "instances_train.jsonl")
 ###############################Diana######################################################
 ###sample data length of 10
 sample_data <- raw_data[10]
 sample_label <- label[10]
 
 sample_data
-sample_data_posttext <- sample_data
+sample_data_posttext <- sample_data["postText"]
+sample_data_posttext
 
 ###Youtube
 library("tm")
