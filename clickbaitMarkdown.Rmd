@@ -37,13 +37,12 @@ ord <- order(freq,decreasing=TRUE)
 freq[head(ord)]
 freq[ord[1:20]]
 
+
 ```
 
 #Without STOP wrods
 ```{r}
-x <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
-docs2 <- Corpus(VectorSource((x)))
-                
+docs2 <- Corpus(DirSource("/Users/Rafael/Downloads/D310 Clickbait/dataset"))
 docs2 <- tm_map(docs2, removeWords, stopwords(kind = "en"))
 
 dtm2 <- DocumentTermMatrix(docs2)
