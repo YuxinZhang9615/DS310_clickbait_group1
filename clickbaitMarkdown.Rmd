@@ -29,7 +29,6 @@ freq[ord[1:20]]
 withoutWords <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
 docs2 <- Corpus(VectorSource(withoutWords))
 docs2 <- tm_map(docs2, removeWords, stopwords(kind = "en"))
-
 dtm2 <- DocumentTermMatrix(docs2)
 freq2 <- colSums(as.matrix(dtm2))
 ord2 <- order(freq2,decreasing=TRUE)
