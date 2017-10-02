@@ -532,7 +532,7 @@ for (i in 1:10000){
 
 prop_nnp_tTitle <- c()
 for (i in 1:10000){
-  prop_nnp_tTitle[i] = nnp_tTitle[i] / numSentence_targetTitle[i]
+  prop_nnp_tTitle[i] = nnp_tTitle[i] / numWord_targetTitle[i]
 }
 feature <- cbind(prop_nnp_tTitle, feature)
 head(feature)
