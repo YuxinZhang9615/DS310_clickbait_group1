@@ -111,8 +111,8 @@ rm(data335)
 
 ######Start with data set
 library(rjson)
-raw_data <- readLines("training/instances_train.jsonl")
-label <- readLines("training/truth_train.jsonl")
+raw_data <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
+label <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
 ###sample as reference
 data1 <- fromJSON(raw_data[1])
 data1
@@ -675,3 +675,31 @@ feature <- cbind(prop_vbp_tTitle, feature)
 head(feature)
 feature <- cbind(lenSentence_postText,feature)
 write.csv(feature, "feature_tT2")
+
+###Punctuation Overuse Point Occurence
+data_punct <- 0
+for (i in 1:length(targetTitle)){
+  if (grepl("\\!+|\\?+\\*+", targetTitle[i]) == TRUE){
+    data_punct <- data_punct + 1
+  }
+}
+data_punct.percentage <- (data_punct / length(targetTitle))*100
+
+###Begins with 'you' variation in target Title
+for (i in 1:length(targetTitle)){
+  if (tolower((stringr::str_extract(targetTitle[i], '^.{0,3}'))) == c("you")){
+    if (tolower((stringr::str_extract(targetTitle[i], '^.{0,4}'))) != c("youn")){
+      print(targetTitle[i])
+    }
+  }
+}
+
+###Begins with 'you' variation in postText
+for (i in 1:length(postText)){
+  if ((stringr::str_extract(postText[i], '^.{0,3}')) == c("You")){
+    if (tolower((stringr::str_extract(postText[i], '^.{0,4}'))) != c("youn")){
+      print(postText[i])
+    }
+  }
+}
+
