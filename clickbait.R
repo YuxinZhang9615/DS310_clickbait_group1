@@ -111,8 +111,8 @@ rm(data335)
 
 ######Start with data set
 library(rjson)
-raw_data <- readLines("training/instances_train.jsonl")
-label <- readLines("training/truth_train.jsonl")
+raw_data <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
+label <- readLines("https://raw.githubusercontent.com/YuxinZhang9615/DS310_clickbait_group1/master/instances_train.jsonl")
 ###sample as reference
 data1 <- fromJSON(raw_data[1])
 data1
@@ -788,9 +788,6 @@ prop_vbp_tTitle <- c()
 for (i in 1:16000){
   prop_vbp_tTitle[i] = vbp_tTitle[i] / numWord_targetTitle[i]
 }
-#feature <- cbind(prop_vbp_tTitle, feature)
-#head(feature)
-#feature <- cbind(lenSentence_postText,feature)
 cd_tTitle <- c()
 for (i in 1:16000){
   cd_tTitle[i] = 0
@@ -834,7 +831,7 @@ feature <- cbind(len_postText,len_targetTitle,lenLongWord_postText,lenLongWord_t
                  prop_nn_pText,prop_nn_tTitle,prop_nnp_pText,prop_nnp_tTitle,prop_prp_pText,prop_prp_tTitle,
                  prop_v_pText,prop_v_tTitle,prop_vbd_pText,prop_vbd_tTitle,prop_vbn_pText,prop_vbn_tTitle,prop_vbp_pText,prop_vbp_tTitle,
                  prop_vbz_pText,prop_vbz_tTitle,prop_wh_pText,prop_wh_tTitle)
-head(feature)
+
 dim(feature)
 
 # ####Add more features
@@ -1297,4 +1294,34 @@ library(farff)
 
 names(trained) <- make.names(names(trained),unique = TRUE)
 
-writeARFF(feature, "trainedFeatures1.arff")
+
+feature <- cbind(lenSentence_postText,feature)
+write.csv(feature, "feature_tT2")
+
+###Punctuation Overuse Point Occurence
+data_punct <- 0
+for (i in 1:length(targetTitle)){
+  if (grepl("\\!+|\\?+\\*+", targetTitle[i]) == TRUE){
+    data_punct <- data_punct + 1
+  }
+}
+data_punct.percentage <- (data_punct / length(targetTitle))*100
+
+###Begins with 'you' variation in target Title
+for (i in 1:length(targetTitle)){
+  if (tolower((stringr::str_extract(targetTitle[i], '^.{0,3}'))) == c("you")){
+    if (tolower((stringr::str_extract(targetTitle[i], '^.{0,4}'))) != c("youn")){
+      print(targetTitle[i])
+    }
+  }
+}
+
+###Begins with 'you' variation in postText
+for (i in 1:length(postText)){
+  if ((stringr::str_extract(postText[i], '^.{0,3}')) == c("You")){
+    if (tolower((stringr::str_extract(postText[i], '^.{0,4}'))) != c("youn")){
+      print(postText[i])
+    }
+  }
+}
+
